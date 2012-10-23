@@ -1,0 +1,1489 @@
+<!DOCTYPE html>  
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Hive Cheat Sheet</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+/* 
+   This document has been created with Marked.app <http://markedapp.com>, Copyright 2011 Brett Terpstra
+   Please leave this notice in place, along with any additional credits below.
+   ---------------------------------------------------------------
+   Title: Swiss
+   Author: Brett Terpstra
+   Description: Clean, Swiss typography with no frills.
+*/
+body{-webkit-font-smoothing:antialiased;font:normal .8764em/1.5em Arial,Verdana,sans-serif;margin:0}html>body{font-size:13px}li{font-size:110%}li li{font-size:100%}li p{font-size:100%;margin:.5em 0}h1{color:#000;font-size:2.2857em;line-height:.6563em;margin:.6563em 0}h2{color:#111;font-size:1.7143em;line-height:.875em;margin:.875em 0}h3{color:#111;font-size:1.5em;line-height:1em;margin:1em 0}h4{color:#111;font-size:1.2857em;line-height:1.1667em;margin:1.1667em 0}h5{color:#111;font-size:1.15em;line-height:1.3em;margin:1.3em 0}h6{font-size:1em;line-height:1.5em;margin:1.5em 0}body,p,td,div{color:#111;font-family:"Helvetica Neue",Helvetica,Arial,Verdana,sans-serif;word-wrap:break-word}h1,h2,h3,h4,h5,h6{line-height:1.5em}a{-webkit-transition:color .2s ease-in-out;color:#0d6ea1;text-decoration:none}a:hover{color:#3593d9}.footnote{color:#0d6ea1;font-size:.8em;vertical-align:super}#wrapper img{max-width:100%;height:auto}dd{margin-bottom:1em}li>p:first-child{margin:0}ul ul,ul ol{margin-bottom:.4em}caption,col,colgroup,table,tbody,td,tfoot,th,thead,tr{border-spacing:0}table{border:1px solid rgba(0,0,0,0.25);border-collapse:collapse;display:table;empty-cells:hide;margin:-1px 0 23px;padding:0;table-layout:fixed}caption{display:table-caption;font-weight:700}col{display:table-column}colgroup{display:table-column-group}tbody{display:table-row-group}tfoot{display:table-footer-group}thead{display:table-header-group}td,th{display:table-cell}tr{display:table-row}table th,table td{font-size:1.1em;line-height:23px;padding:0 1em}table thead{background:rgba(0,0,0,0.15);border:1px solid rgba(0,0,0,0.15);border-bottom:1px solid rgba(0,0,0,0.2)}table tbody{background:rgba(0,0,0,0.05)}table tfoot{background:rgba(0,0,0,0.15);border:1px solid rgba(0,0,0,0.15);border-top:1px solid rgba(0,0,0,0.2)}figure{display:inline-block;margin-bottom:1.2em;position:relative;margin:1em 0}figcaption{font-style:italic;text-align:center;background:rgba(0,0,0,.9);color:rgba(255,255,255,1);position:absolute;left:0;bottom:-24px;width:98%;padding:1%;-webkit-transition:all .2s ease-in-out}.poetry pre{display:block;font-family:Georgia,Garamond,serif!important;font-size:110%!important;font-style:italic;line-height:1.6em;margin-left:1em}.poetry pre code{font-family:Georgia,Garamond,serif!important}blockquote p{font-size:110%;font-style:italic;line-height:1.6em}sup,sub,a.footnote{font-size:1.4ex;height:0;line-height:1;position:relative;vertical-align:super}sub{vertical-align:sub;top:-1px}p,h5{font-size:1.1429em;line-height:1.3125em;margin:1.3125em 0}dt,th{font-weight:700}table tr:nth-child(odd),table th:nth-child(odd),table td:nth-child(odd){background:rgba(255,255,255,0.06)}table tr:nth-child(even),table td:nth-child(even){background:rgba(0,0,0,0.06)}@media print{body{overflow:auto}img,pre,blockquote,table,figure,p{page-break-inside:avoid}#wrapper{background:#fff;color:#303030;font-size:85%;padding:10px;position:relative;text-indent:0}}@media screen{.inverted #wrapper,.inverted{background:rgba(37,42,42,1)}.inverted hr{border-color:rgba(51,63,64,1)!important}.inverted p,.inverted td,.inverted li,.inverted h1,.inverted h2,.inverted h3,.inverted h4,.inverted h5,.inverted h6,.inverted pre,.inverted code,.inverted th,.inverted .math,.inverted caption,.inverted dd,.inverted dt{color:#eee!important}.inverted table tr:nth-child(odd),.inverted table th:nth-child(odd),.inverted table td:nth-child(odd){background:0}.inverted a{color:rgba(172,209,213,1)}#wrapper{padding:20px}::selection{background:rgba(157,193,200,.5)}h1::selection{background-color:rgba(45,156,208,.3)}h2::selection{background-color:rgba(90,182,224,.3)}h3::selection,h4::selection,h5::selection,h6::selection,li::selection,ol::selection{background-color:rgba(133,201,232,.3)}code::selection{background-color:rgba(0,0,0,.7);color:#eee}code span::selection{background-color:rgba(0,0,0,.7)!important;color:#eee!important}a::selection{background-color:rgba(255,230,102,.2)}.inverted a::selection{background-color:rgba(255,230,102,.6)}td::selection,th::selection,caption::selection{background-color:rgba(180,237,95,.5)}}
+</style>
+
+</head>
+<body class="normal">
+  <div id="wrapper">
+      <p><img src="../images/SmallThinkBigIcon.png" alt="" /></p>
+
+<h1 id="hivecheatsheet">Hive Cheat Sheet</h1>
+
+<p>Copyright &#169; 2011&#8211;2012 Think Big Analytics.</p>
+
+<p>A quick reference for the most useful <em>Hive</em> commands and <em>HiveQL</em> features. Note that some of the output shown, etc. will vary depending on which Hadoop distribution and Hive version you are using and how it is configured in your environment.</p>
+
+<p>See the <a href="https://cwiki.apache.org/confluence/display/Hive/Home">Hive wiki</a> for more details not covered here.</p>
+
+<p>The end of these notes list some differences between <em>HiveQL</em>, Oracle SQL, and ANSI SQL.</p>
+
+<h2 id="thehiveinstallationonourvm">The Hive Installation on Our VM</h2>
+
+<p><code>$HIVE_HOME</code> is defined in <code>/opt/local/apache/hadoop.sh</code>. It points to <code>/opt/local/apache/hive</code>, which is a symlink to <code>/opt/local/apache/hive-0.7.1</code>.</p>
+
+<table>
+<colgroup>
+<col style="text-align:left;"/>
+<col style="text-align:left;"/>
+<col style="text-align:left;"/>
+<col style="text-align:left;"/>
+</colgroup>
+
+<thead>
+<tr>
+	<th style="text-align:left;">Directory</th>
+	<th style="text-align:left;"><em>Important</em> Contents</th>
+	<th style="text-align:left;" colspan="2">Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td style="text-align:left;"><code>bin</code></td>
+	<td style="text-align:left;"><code>hive</code></td>
+	<td style="text-align:left;">The driver for all Hive processes: <code>hive -h</code> (help) and <code>hive</code> (CLI)</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>bin/ext</code></td>
+	<td style="text-align:left;"><code>cli.sh</code></td>
+	<td style="text-align:left;">The CLI process: <code>hive</code> or <code>hive --service cli</code> (All <code>bin/ext</code> scripts are invoked through <code>hive --service ...</code>)</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>bin/ext</code></td>
+	<td style="text-align:left;"><code>help.sh</code></td>
+	<td style="text-align:left;">Help: <code>hive -h</code>, <code>hive --service help</code>, and <code>hive --service &lt;service&gt; --help</code> (all different)</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>bin/ext</code></td>
+	<td style="text-align:left;"><code>hwi.sh</code></td>
+	<td style="text-align:left;">The Hive Web Interface process: <code>hive --service hwi</code></td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>bin/ext</code></td>
+	<td style="text-align:left;"><code>hiveserver.sh</code></td>
+	<td style="text-align:left;">Run Hive as a server that permits <em>Thrift</em> client connections: <code>env HIVE_PORT=NNNN hive --service hiveserver</code></td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>bin/ext</code></td>
+	<td style="text-align:left;"><code>metastore.sh</code></td>
+	<td style="text-align:left;">Run a metastore server: <code>env HIVE_METASTORE=NNNN hive --service metastore</code></td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>conf</code></td>
+	<td style="text-align:left;"><code>hive-default.xml</code></td>
+	<td style="text-align:left;">All possible config variables (many inherited from Hadoop).</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>conf</code></td>
+	<td style="text-align:left;"><code>hive-site.xml</code></td>
+	<td style="text-align:left;">Place to override the defaults.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>conf</code></td>
+	<td style="text-align:left;"><code>hive-log4j.properties</code></td>
+	<td style="text-align:left;">Log4J configuration.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>docs</code></td>
+	<td style="text-align:left;"><code>index.html</code></td>
+	<td style="text-align:left;">Hive&#8217;s (limited) documentation.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>examples</code></td>
+	<td style="text-align:left;"><em>all</em></td>
+	<td style="text-align:left;">Many HiveQL examples.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>lib</code></td>
+	<td style="text-align:left;"><em>all</em></td>
+	<td style="text-align:left;">The core Hive libraries. Sometimes you will want to add custom jars here.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>scripts</code></td>
+	<td style="text-align:left;"><code>metastore/*</code></td>
+	<td style="text-align:left;">Scripts for upgrading a metastore from an older Hive version.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>src</code></td>
+	<td style="text-align:left;"><em>all</em></td>
+	<td style="text-align:left;">The source code for Hive!</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><em>current working directory</em></td>
+	<td style="text-align:left;"><code>metastore_db</code></td>
+	<td style="text-align:left;">The default Derby metadata store database. Hence, you probably want to invoke hive from the same directory every time, at least for our instalattion.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note:</strong> Because we have the metadata store configured for a single user process, you can&#8217;t run the Hive CLI at the same time as the web interface.</p>
+
+<h2 id="invokinghive">Invoking Hive</h2>
+
+<h3 id="thehivecli">The Hive CLI</h3>
+
+<p>The <code>hive</code> script without any options invokes the CLI (command line interpreter). Here are the options for thie &#8220;service&#8221;, shown by running <code>hive -h</code> (which is equivalent to <code>hive --service cli --help</code>).</p>
+
+<pre><code>usage: hive
+ -e &lt;quoted-query-string&gt;         SQL from command line
+ -f &lt;filename&gt;                    SQL from files
+ -h,--help                        Print help information
+    --hiveconf &lt;property=value&gt;   Use value for given property
+ -i &lt;filename&gt;                    Initialization SQL file
+ -S,--silent                      Silent mode in interactive shell
+ -v,--verbose                     Verbose mode (echo executed SQL to the
+                                  console)
+</code></pre>
+
+<p>The <code>-i &lt;filename&gt;</code> option is particularly useful for setting up an &#8220;initialization&#8221; file that does common setup HQL commands.</p>
+
+<h3 id="thehivewebinterface">The Hive Web Interface</h3>
+
+<p>A very primitive web UI, it does provide a way of avoiding the need for everyone to login into a server to run Hive is to give them access to the web interface. This is barebones. You might consider using Cloudera&#8217;s <a href="http://archive.cloudera.com/cdh/3/hue/">Hue</a> or a commercial tool like Karmasphere or Datameer, instead. If you are an Eclipse user, you might try the <a href="http://marketplace.eclipse.org/content/toad-cloud-databases">Toad for Cloud Databases</a> plugin.</p>
+
+<p>The commands are:</p>
+
+<pre><code>hive --service hwi         # start the hwi
+hive --service hwi --help  # show help
+</code></pre>
+
+<p>Run the start command in a directory where the user has write permission. By default, hwi tries to create a <code>metastore_db</code> there!</p>
+
+<p>By default, the console listens on port 9999, but we have configured HWI on the VM to use a port we have already opened through the firewall, 50100.</p>
+
+<pre><code>http://192.168.2.5:50100/hwi/
+</code></pre>
+
+<h3 id="thehiveserver">The Hiveserver</h3>
+
+<p>The <code>hiveserver</code> lets clients connect to Hive using the <em>Thrift</em> serialization protocol. Support exists for JDBC connections as well as from any other language for which there is <em>Thrift</em> support, such as C++.</p>
+
+<h3 id="metastore">Metastore</h3>
+
+<p>Normally in production you use a multiuser production database like <em>MySQL</em> or <em>Postgres</em> for the <em>metadata store</em> and you run a single server for the metastore, as opposed to running local instances on each machine running Hive.</p>
+
+<h2 id="asimpleexampleusingthehivecli">A Simple Example Using the Hive CLI</h2>
+
+<p>Here is a simple session transcript, with some output removed for clarity, etc. The <code>$</code> on the first line is the <code>bash</code> prompt. The <code>hive</code> prompt is <code>hive&gt;</code>. Lines without that prompt are command results. A blank line is added after each command result for clarity and keywords are shown in all caps. Like other SQL dialects, case is ignored for keywords, etc. (File paths are case sensitive.) For convenience, just the commands for this sample session are captured in <code>session.hql</code> in the Hive Walkthrough exercise folder.</p>
+
+<pre><code>$ hive
+Hive history file=/tmp/thinkbig/hive_job_log_thinkbig_201112050148_1266834092.txt
+
+hive&gt; SHOW TABLES;
+OK
+
+hive&gt; CREATE TABLE demo1 (id INT, name STRING);
+OK
+
+hive&gt; SHOW TABLES;
+OK
+demo1
+
+hive&gt; DESCRIBE DEMO1;
+OK
+id  int 
+name    string  
+
+hive&gt; ALTER TABLE demo1 ADD COLUMNS (boss STRING);
+OK
+
+hive&gt; DESCRIBE DEMO1;
+OK
+id  int 
+name    string  
+boss    string  
+
+hive&gt; DROP TABLE demo1;
+OK
+Time taken: 9.421 seconds
+</code></pre>
+
+<p>Here&#8217;s a more sophisticated table that provides a sneak peak of what&#8217;s to come&#8230;</p>
+
+<pre><code>hive&gt; CREATE EXTERNAL TABLE shakespeare_wc (word STRING, count INT) 
+    &gt; ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t'
+    &gt; LOCATION '/data/shakespeare/golden/simple-word-count/plain-text';
+OK
+Time taken: 0.308 seconds
+
+hive&gt; SELECT word FROM shakespeare_wc LIMIT 5;                        
+Total MapReduce jobs = 1
+Launching Job 1 out of 1
+...
+OK
+lackeys.
+lackeys:
+lacking
+lacking--god
+lacks
+
+hive&gt; SELECT * FROM shakespeare_wc WHERE word LIKE 'w%' LIMIT 5;
+Total MapReduce jobs = 1
+Launching Job 1 out of 1
+...
+OK
+w.  1
+wad 1
+waddled 1
+wade    3
+waded   2
+hive&gt; DROP TABLE shakespeare_wc;
+OK
+hive&gt; exit;
+</code></pre>
+
+<h2 id="thehivequerylanguagehiveqlorhql">The Hive Query Language (HiveQL or HQL)</h2>
+
+<p>While you can access Hive programmatically through JDBC, ODBC, and Thrift, we&#8217;ll focus exclusively on accessing the Hive Query Language (HiveQL or HQL) through the CLI.</p>
+
+<p>As before, when CLI examples are shown, they will follow the lecture examples and the exercises. Most of the output is suppressed, except where it is particularly informative. </p>
+
+<p><strong>Note:</strong> HiveQL doesn&#8217;t have a comment convention, so there is no way to embed comments in <code>hql</code> files that you run with the <code>hive -f file</code> option!</p>
+
+<h3 id="primitivedatatypes">Primitive Data Types</h3>
+
+<p>There are the usual built-in data types [1]. As always, case is ignored.</p>
+
+<table>
+<colgroup>
+<col style="text-align:left;"/>
+<col style="text-align:left;"/>
+<col style="text-align:left;"/>
+</colgroup>
+
+<thead>
+<tr>
+	<th style="text-align:left;">Type</th>
+	<th style="text-align:left;">Size</th>
+	<th style="text-align:left;" colspan="2">Literal Syntax Examples</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td style="text-align:left;"><code>TINYINT</code></td>
+	<td style="text-align:left;">1-byte signed integer</td>
+	<td style="text-align:left;"><code>20</code></td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>SMALLINT</code></td>
+	<td style="text-align:left;">2-byte signed integer</td>
+	<td style="text-align:left;"><code>20</code></td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>INT</code></td>
+	<td style="text-align:left;">4-byte signed integer</td>
+	<td style="text-align:left;"><code>20</code></td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>BIGINT</code></td>
+	<td style="text-align:left;">8-byte signed integer</td>
+	<td style="text-align:left;"><code>20</code></td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>BOOLEAN</code></td>
+	<td style="text-align:left;"><code>TRUE</code> | <code>FALSE</code></td>
+	<td style="text-align:left;"><code>TRUE</code></td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>FLOAT</code></td>
+	<td style="text-align:left;">4-byte single precision</td>
+	<td style="text-align:left;"><code>3.14159</code></td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>DOUBLE</code></td>
+	<td style="text-align:left;">8-byte double precision</td>
+	<td style="text-align:left;"><code>3.14159</code></td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>STRING</code></td>
+	<td style="text-align:left;">Sequence of characters. The character set can be specified.</td>
+	<td style="text-align:left;">&#8216;Now is the time&#8217;, &#8220;for all good men&#8221;</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>TIMESTAMP</code></td>
+	<td style="text-align:left;">Integer, float or string</td>
+	<td style="text-align:left;">(Hive v0.8) <code>1327882394</code> (Unix epoch seconds), <code>1327882394.123456789</code> (Unix epoch seconds plus nanoseconds), and <code>'2012-02-03 12:34:56.123456789'</code> (JDBC-compliant <code>java.sql.Timestamp</code> format).</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>BINARY</code></td>
+	<td style="text-align:left;">Array of bytes</td>
+	<td style="text-align:left;">(Hive v0.8) see discussion below.</td>
+</tr>
+</tbody>
+</table>
+<p>Note that these types reflect the underlying types provided by Java. </p>
+
+<p><code>TIMESTAMP</code> and <code>BINARY</code> are new to Hive v0.8.0. For Hive v0.7.X, use an integer value for the epoch seconds or use a <code>STRING</code>. If you use the latter, it is best to use a sortable format like the example shown.</p>
+
+<p>The <code>BINARY</code> type is a way of saying &#8220;ignore the rest of this record&#8221;; it is treated as a byte array without interpretation and with no built-in support for conversion to other types. Use it when you only care about the first few fields in a record, e.g.,</p>
+
+<pre><code>CREATE TABLE short (s STRING, i INT, b BINARY);  
+</code></pre>
+
+<p>When a query mentions a particular type, Hive will implicitly cast any integer type to a larger integer type, cast <code>FLOAT</code> to <code>DOUBLE</code>, and cast any integer type to <code>DOUBLE</code>, as needed.</p>
+
+<p>You can also explicitly interpret a <code>STRING</code> as a number type using, for example, <code>'3.14159' to DOUBLE</code>.</p>
+
+<h3 id="complexdatatypes">Complex Data Types</h3>
+
+<p>Hive supports columns that are <code>structs</code>, <code>maps</code>, and <code>arrays</code>. Note that the &#8220;literal syntax examples&#8221; are actually making calls to built-in functions.</p>
+
+<table>
+<colgroup>
+<col style="text-align:left;"/>
+<col style="text-align:left;"/>
+<col style="text-align:left;"/>
+</colgroup>
+
+<thead>
+<tr>
+	<th style="text-align:left;">Type</th>
+	<th style="text-align:left;">Description</th>
+	<th style="text-align:left;" colspan="2">Literal Syntax Examples</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td style="text-align:left;"><code>STRUCT</code></td>
+	<td style="text-align:left;">Analogous to a C <code>struct</code> or an &#8220;object&#8221;. Fields can be accessed using the &#8220;dot&#8221; notation. For example, if a column <code>name</code> if of type <code>STRUCT {first STRING; last STRING}</code>, then the first name field can be referenced using <code>name.first</code>.</td>
+	<td style="text-align:left;"><code>struct('John', 'Doe')</code></td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>MAP</code></td>
+	<td style="text-align:left;">A collection of key-value tuples, where the fields are accessed using array notation, e.g., [&#8216;key&#8217;]. For example, if a column <code>name</code> is of type <code>MAP</code> with key-&gt;value pairs <code>'first'-&gt;'John'</code> and <code>'last'-&gt;'Doe'</code>, then the last name can be referenced using <code>name['last']</code>.</td>
+	<td style="text-align:left;"><code>map('first', 'John', 'last', 'Doe')</code></td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>ARRAY</code></td>
+	<td style="text-align:left;">Lists of the same type that are indexable using zero-based integers. For example, if a column <code>name</code> is of type <code>ARRAY</code> of strings with the value <code>['John', 'Doe']</code>, then the second element can be referenced using <code>name[1]</code>.</td>
+	<td style="text-align:left;"><code>array('John', 'Doe')</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="fileformats">File Formats</h3>
+
+<p>Hive supports all the Hadoop file formats, plus Thrift encoding, as well as supporting pluggable <code>SerDe</code> (serializer/deserializer) classes to support custom formats. Hive defaults to the following record and field delimiters, all of which are non-printable control characters and all of which can be customized.</p>
+
+<table>
+<colgroup>
+<col style="text-align:left;"/>
+<col style="text-align:left;"/>
+<col style="text-align:left;"/>
+</colgroup>
+
+<thead>
+<tr>
+	<th style="text-align:left;">Delimiter</th>
+	<th style="text-align:left;">Name</th>
+	<th style="text-align:left;">Use</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td style="text-align:left;"><code>\n</code> or <code>\r</code></td>
+	<td style="text-align:left;">Line feed or carraige return</td>
+	<td style="text-align:left;">Records, i.e., one per line.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>^A</code></td>
+	<td style="text-align:left;">Control-A (<code>\001</code>)</td>
+	<td style="text-align:left;">Separates fields, e.g., the way commas are used in CSV files.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>^B</code></td>
+	<td style="text-align:left;">Control-B (<code>\002</code>)</td>
+	<td style="text-align:left;">Separates elements in the &#8220;collections&#8221; (<code>STRUCT</code>, <code>MAP</code>, and <code>ARRAY</code>)</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>^C</code></td>
+	<td style="text-align:left;">Control-C (<code>\003</code>)</td>
+	<td style="text-align:left;">Separates the key and value in <code>MAP</code> elements.</td>
+</tr>
+</tbody>
+</table>
+<p>All of these defaults can be customized when creating tables. See examples below.</p>
+
+<p>There are several file formats supported by Hive. <code>TEXTFILE</code> is the easiest to use, but the least space efficient. Hadoop&#8217;s <code>SEQUENCEFILE</code> format is more space efficient. A related format is <code>MAPFILE</code> which adds an index to a <code>SEQUENCEFILE</code> for faster retrieval of particular records.</p>
+
+<h3 id="databaseschemamanagement">Database (Schema) Management</h3>
+
+<p>Let&#8217;s discuss database (a.k.a. schema) management and demonstrate the relationship between databases and tables. First, an example session:</p>
+
+<pre><code>hive&gt; SHOW DATABASES;
+OK
+default
+
+hive&gt; CREATE DATABASE IF NOT EXISTS db1
+  COMMENT 'Our database db1';
+OK
+
+hive&gt; SHOW DATABASES;
+OK
+db1
+default
+
+hive&gt; DESCRIBE DATABASE db1;
+OK
+db1     Our database db1    hdfs://localhost/user/hive/warehouse/db1.db    
+
+hive&gt; SHOW TABLES;
+OK
+
+hive&gt; CREATE TABLE db1.table1 (word STRING, count INT);
+OK
+
+hive&gt; SHOW TABLES;
+OK
+table1
+
+hive&gt; DESCRIBE db1.table1;
+FAILED: Parse Error: line 1:0 cannot recognize input near 'describe' 'table' 'db1' in describe statement
+
+hive&gt; DESCRIBE table1;
+OK
+word    string
+count   int
+
+hive&gt; USE db1;
+OK
+
+hive&gt; SHOW TABLES;
+OK
+table1
+
+hive&gt; SELECT * FROM db1.table1;
+OK
+
+hive&gt; SELECT * FROM table1;
+OK
+
+hive&gt; DROP TABLE table1;
+OK
+
+hive&gt; DROP DATABASE db1;
+OK
+
+hive&gt; USE default;
+OK
+</code></pre>
+
+<p>Unfortunately, there is no built-in command to show the current database you are using! The only workaround for the 0.7.X versions of Hive is to repeat the <code>USE db1</code> command to ensure you are where you want to be. However, for version 0.8.X and newer, an alternative is to modify the <code>hive&gt;</code> prompt to show the current database. Add the following to your <code>$HOME/.hiverc</code> file (or type the command at the hive prompt):</p>
+
+<pre><code>set hive.cli.print.current.db=true;
+</code></pre>
+
+<h3 id="creatinganddeletingtables">Creating and Deleting Tables</h3>
+
+<p>By default, created tables are <em>internal</em>, where Hive owns and manages the data, as well as the table metadata. </p>
+
+<pre><code>hive&gt; CREATE TABLE demo1 (id INT, name STRING);
+</code></pre>
+
+<p>This command creates an internally-managed table with the data storage located in HDFS in the <code>&lt;hive.metastore.warehouse.dir&gt;/demo1</code> directory, where the <code>hive.metastore.warehouse.dir</code> property is configurable. We are using the default value of <code>/user/hive/warehouse</code> in HDFS. This is an otherwise ordinary HDFS directory. You can always use <code>hadoop -lsr /user/hive/warehouse</code> to view this directory tree.</p>
+
+<p>However, when sharing data between many tools, it is often convenient to use <em>external</em> tables, where the data is managed outside of Hive&#8217;s control, but Hive owns the table metadata.</p>
+
+<p>Here is an <em>external</em> table that points to the <em>Word Count</em> results for our previous William Shakespeare exercise. Note that we have to specify the field separator (tab) and the directory location in HDFS. Hive will use all the files in that directory.</p>
+
+<pre><code>hive&gt; CREATE EXTERNAL TABLE shakespeare_wc (
+      name STRING,
+      count INT
+      ) 
+  ROW FORMAT 
+  DELIMITED FIELDS TERMINATED BY '\t'
+  LOCATION '/data/shakespeare/golden/simple-word-count/plain-text';
+</code></pre>
+
+<p>The following query runs a MapReduce job and takes ~40 seconds on my VM (sometimes longer&#8230;) and returns 64332:</p>
+
+<pre><code>hive&gt; SELECT COUNT(*) FROM shakespeare_wc;
+</code></pre>
+
+<p>Here is the same <em>external</em> table, but this time, we are using <code>SequenceFile</code> storage. Note that location change.</p>
+
+<pre><code>hive&gt; SET io.seqfile.compression.type=BLOCK;
+hive&gt; CREATE EXTERNAL TABLE shakespeare_wc2 (
+      name STRING,
+      count INT
+      ) 
+  ROW FORMAT 
+  DELIMITED FIELDS TERMINATED BY '\t'
+  STORED AS SEQUENCEFILE
+  LOCATION '/data/shakespeare/golden/simple-word-count/sequence-file';
+</code></pre>
+
+<p>If you add the <code>EXTENDED</code> keyword to <code>DESCRIBE</code>, you get more information:</p>
+
+<pre><code>hive&gt; DESCRIBE EXTENDED shakespeare_wc2;
+</code></pre>
+
+<p>How does the change affect the timing of the same query?</p>
+
+<pre><code>SELECT COUNT(*) FROM shakespeare_wc2;
+</code></pre>
+
+<p>Let&#8217;s create another <em>external</em> table that demonstrates the support for complex data types (discussed previously) in columns with non-trivial columns and the all the delimiters explicit set. In fact, we are just specifying Hive&#8217;s default delimiters, where <code>\001</code> is Control-A, <code>\002</code> is Control-B, and <code>\003</code> is Control-C:</p>
+
+<pre><code>hive&gt; CREATE EXTERNAL TABLE employees (
+      name         STRING,
+      subordinates ARRAY&lt;STRING&gt;,
+      deductions   MAP&lt;STRING, FLOAT&gt;,
+      address      STRUCT&lt;street:STRING, city:STRING, state:STRING, zip:INT&gt;
+    )
+  ROW FORMAT DELIMITED
+  FIELDS TERMINATED BY '\001' 
+  COLLECTION ITEMS TERMINATED BY '\002' 
+  MAP KEYS TERMINATED BY '\003'
+  LINES TERMINATED BY '\n'
+  STORED AS TEXTFILE
+  LOCATION '/user/thinkbig/employees';
+</code></pre>
+
+<p>(The indentation and breaks between lines are arbitrary; we chose them for clarity.) We have defined keys for indexing here, so we&#8217;re just using the name as a key. Hence <code>subordinates</code> is an array of other <code>employee</code> names. An example of a <code>deduction</code> is <code>'Federal Tax' -&gt; .20</code>, meaning 20% of the employee&#8217;s salary.</p>
+
+<p>Here is a sample record:
+ Mary SmithBill KingFederal Taxes.2State Taxes.05Insurance.1100 Ontario St.ChicagoIL60601</p>
+
+<p>Can you recognizes the different fields and complex datatype elements?</p>
+
+<pre><code>hive&gt; DESCRIBE employees;
+OK
+name    string  
+subordinates   array&lt;string&gt;    
+deductions   map&lt;string,float&gt;  
+address struct&lt;street:string,city:string,state:string,zip:int&gt;  
+Time taken: 0.733 seconds
+
+hive&gt; SELECT * FROM employees;
+OK
+Mary Smith  [&quot;Bill King&quot;]   {&quot;Federal Taxes&quot;:0.2,&quot;State Taxes&quot;:0.05,&quot;Insurance&quot;:0.1}    {&quot;street&quot;:&quot;100 Ontario St.&quot;,&quot;city&quot;:&quot;Chicago&quot;,&quot;state&quot;:&quot;IL&quot;,&quot;zip&quot;:60601}
+...
+
+hive&gt; -- Float comparisons have a bug: x &gt; 0.1 will return 0.1 values! Use 0.11.
+hive&gt; SELECT name FROM employees WHERE deductions['Federal Taxes'] &gt; 0.11;
+Total MapReduce jobs = 1
+Launching Job 1 out of 1
+Number of reduce tasks is set to 0 since there's no reduce operator
+...
+OK
+Mary Smith
+...
+hive&gt; SELECT name FROM employees WHERE subordinates[1] = 'Todd Jones';
+OK
+Mary Smith
+...
+hive&gt; SELECT name FROM employees WHERE size(subordinates) &gt; 0;
+OK
+Mary Smith
+...
+hive&gt; SELECT name FROM employees WHERE address.city = 'Chicago';
+OK
+Mary Smith
+...
+</code></pre>
+
+<p>Here is an example of creating a table with partitions. </p>
+
+<pre><code>hive&gt; CREATE TABLE stocks (
+    ymd             STRING,
+    price_open      FLOAT, 
+    price_high      FLOAT,
+    price_low       FLOAT,
+    price_close     FLOAT,
+    volume          FLOAT,
+    price_adj_close FLOAT
+  )
+  PARTITIONED BY (exchange STRING, symbol STRING)
+  STORED AS SEQUENCEFILE;
+</code></pre>
+
+<p>Where <code>ymd</code> is &#8220;year-month-day&#8221;. Using the name <code>date</code> causes a parse error!</p>
+
+<p>Once you have data loaded into a partitioned table (see below), you can view the partitions with this command.</p>
+
+<pre><code>hive&gt; SHOW PARTITIONS stocks;
+</code></pre>
+
+<p>Here is a different way to organize this data, with separate tables for each exchange and clustering of the data by date (<code>ymd</code>), sorted it by <code>symbol</code>, and bucketized into 32 buckets. (Read the Hive documentation about clustering and bucketing, as you must be careful how you load data into such tables; Hive doesn&#8217;t handle the clustering and bucketing for you! These settings only affect queries.)</p>
+
+<pre><code>hive&gt; CREATE TABLE nasdaq (
+    symbol          STRING,
+    ymd             STRING,
+    price_open      FLOAT, 
+    price_high      FLOAT,
+    price_low       FLOAT,
+    price_close     FLOAT,
+    volume          FLOAT,
+    price_adj_close FLOAT
+  )
+  CLUSTERED BY (ymd) SORTED BY (symbol) INTO 32 BUCKETS
+  STORED AS SEQUENCEFILE;
+</code></pre>
+
+<h3 id="alteringtables">Altering Tables</h3>
+
+<p>You can rename a table, add, modify, or remove columns, add or remove partitions, change the file storage and location, etc. Note that changes to the table schema, e.g., changing columns or adding/removing partitions, has no affect on the underlying data. For example, a specified partition might not even exist! Only when queries are done will the schema changes have an effect. If a partition is missing, it is ignored. If a column type is wrong, it may cause a query error.</p>
+
+<p>Here are some examples, assuming the following <code>apple</code> table exists and was created from our <code>stocks</code> table.</p>
+
+<pre><code>hive&gt; CREATE TABLE apple AS SELECT ymd, price_close 
+    FROM stocks WHERE symbol = 'AAPL' AND exchange = 'NASDAQ';
+</code></pre>
+
+<p>Change the name of the table:</p>
+
+<pre><code>hive&gt; ALTER TABLE apple RENAME TO aapl;
+</code></pre>
+
+<p>Change the <code>price_close</code> column to <code>close</code>, keep the same type, and add a comment:</p>
+
+<pre><code>hive&gt; ALTER TABLE aapl CHANGE COLUMN price_close close STRING COMMENT 'The closing price';
+</code></pre>
+
+<p>Add a new <code>adj_close</code> column:</p>
+
+<pre><code>hive&gt; ALTER TABLE aapl ADD COLUMNS (adj_close STRING COMMENT 'The adjusted closing price');
+</code></pre>
+
+<p>Note that all the values in this column will be <code>NULL</code>, <em>unless</em> the underlying storage already has a third column of data (e.g., in the case of an external file <em>or</em> a previous <code>ALTER</code> statement removed the column from the schema). There is no way to specify a default value for the column.</p>
+
+<h2 id="loadingdata">Loading Data</h2>
+
+<p>There are three ways to load data into tables.</p>
+
+<ol>
+<li><p>Define the table to be <code>EXTERNAL</code> so you can modify the distributed file system directory to which it points. Recall from the previous section that if the table is partitioned, you must use <code>ALTER TABLE</code> to add new partitions, where each partition which be stored in its own directory in the distributed file system.</p></li>
+<li><p>Insert data from a query of one or more other table(s). Here is an example for our <code>stocks</code> table:</p>
+
+<p>hive&gt; INSERT OVERWRITE TABLE stocks PARTITION (exchange=&#8217;NASDAQ&#8216;, symbol=&#8217;AAPL&#8217;)
+ SELECT ymd, price_open, price_high, price_low, price_close, volume, price_adj_close
+ FROM stocks2 WHERE symbol = &#8216;AAPL&#8217; AND exchange = &#8216;NASDAQ&#8217;;</p></li>
+<li><p>Combine <code>INSERT</code> with <code>CREATE TABLE</code>:</p>
+
+<p>hive&gt; CREATE TABLE apple AS SELECT ymd, price_close FROM stocks
+ WHERE symbol = &#8216;AAPL&#8217; AND exchange = &#8216;NASDAQ&#8217;;</p></li>
+</ol>
+
+<h2 id="selectstatements">Select Statements</h2>
+
+<p>Many of the standard features of SQL statements are supported.</p>
+
+<h3 id="operatorsandfunctions">Operators and Functions</h3>
+
+<p>Here are the supported operators and functions, adapted from the Hive <a href="https://cwiki.apache.org/confluence/display/Hive/Tutorial#Tutorial-Builtinoperatorsandfunctions">Tutorial</a>.</p>
+
+<h4 id="relationaloperators">Relational Operators</h4>
+
+<p>All return <code>TRUE</code> or <code>FALSE</code>.</p>
+
+<table>
+<colgroup>
+<col style="text-align:center;"/>
+<col style="text-align:left;"/>
+<col style="text-align:left;"/>
+</colgroup>
+
+<thead>
+<tr>
+	<th style="text-align:center;">Operator</th>
+	<th style="text-align:left;">Types of Operands</th>
+	<th style="text-align:left;" colspan="2">Notes</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td style="text-align:center;"><code>A = B</code></td>
+	<td style="text-align:left;">primitives</td>
+	<td style="text-align:left;"><code>TRUE</code> if they are equal.</td>
+</tr>
+<tr>
+	<td style="text-align:center;"><code>A != B</code></td>
+	<td style="text-align:left;">primitives</td>
+	<td style="text-align:left;"><code>TRUE</code> if they are <strong>not</strong> equal.</td>
+</tr>
+<tr>
+	<td style="text-align:center;"><code>A &lt;&gt; B</code></td>
+	<td style="text-align:left;">primitives</td>
+	<td style="text-align:left;"><code>TRUE</code> if they are <strong>not</strong> equal.</td>
+</tr>
+<tr>
+	<td style="text-align:center;"><code>A &lt; B</code></td>
+	<td style="text-align:left;">primitives</td>
+	<td style="text-align:left;">Less than. Buggy for <code>FLOATS</code>, <code>DOUBLES</code>; behaves like <code>&lt;=</code>.</td>
+</tr>
+<tr>
+	<td style="text-align:center;"><code>A &lt;= B</code></td>
+	<td style="text-align:left;">primitives</td>
+	<td style="text-align:left;">Less than or equals to.</td>
+</tr>
+<tr>
+	<td style="text-align:center;"><code>A &gt; B</code></td>
+	<td style="text-align:left;">primitives</td>
+	<td style="text-align:left;">Greater than. Buggy for <code>FLOATS</code>, <code>DOUBLES</code>; behaves like <code>&gt;=</code>.</td>
+</tr>
+<tr>
+	<td style="text-align:center;"><code>A &gt;= B</code></td>
+	<td style="text-align:left;">primitives</td>
+	<td style="text-align:left;">Less than or equals to.</td>
+</tr>
+<tr>
+	<td style="text-align:center;"><code>A IS NULL</code></td>
+	<td style="text-align:left;">all types</td>
+	<td style="text-align:left;"><code>TRUE</code> if <code>A</code> is <code>NULL</code>.</td>
+</tr>
+<tr>
+	<td style="text-align:center;"><code>A IS NOT NULL</code></td>
+	<td style="text-align:left;">all types</td>
+	<td style="text-align:left;"><code>TRUE</code> if <code>A</code> is <strong>not</strong> <code>NULL</code>.</td>
+</tr>
+<tr>
+	<td style="text-align:center;"><code>A LIKE B</code></td>
+	<td style="text-align:left;">strings</td>
+	<td style="text-align:left;">Character by character comparison. <code>TRUE</code> if string <code>A</code> matches the SQL simple regular expression <code>B</code>. The <code>_</code> character in <code>B</code> matches any character in <code>A</code> and the <code>%</code> character in <code>B</code> matches an arbitrary number of characters in <code>A</code>. To match a literal <code>%</code> use <code>\%</code>.</td>
+</tr>
+<tr>
+	<td style="text-align:center;"><code>A RLIKE B</code></td>
+	<td style="text-align:left;">strings</td>
+	<td style="text-align:left;"><code>TRUE</code> if string <code>A</code> matches the Java regular expression <code>B</code>.</td>
+</tr>
+<tr>
+	<td style="text-align:center;"><code>A REGEXP B</code></td>
+	<td style="text-align:left;">strings</td>
+	<td style="text-align:left;">Same as <code>RLIKE</code>.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="arithmeticoperators">Arithmetic Operators</h4>
+
+<p>All take only number types and all return number types. When mixing number types, e.g., <code>INT</code> and <code>FLOAT</code>, the usual promotion rules apply.</p>
+
+<table>
+<colgroup>
+<col style="text-align:center;"/>
+<col style="text-align:left;"/>
+</colgroup>
+
+<thead>
+<tr>
+	<th style="text-align:center;">Operator</th>
+	<th style="text-align:left;" colspan="2">Notes</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td style="text-align:center;"><code>A + B</code></td>
+	<td style="text-align:left;">Addition.</td>
+</tr>
+<tr>
+	<td style="text-align:center;"><code>A - B</code></td>
+	<td style="text-align:left;">Subtraction.</td>
+</tr>
+<tr>
+	<td style="text-align:center;"><code>A * B</code></td>
+	<td style="text-align:left;">Multiplication. If it would cause overflow, you must cast one of the operands to a &#8220;wider&#8221; type.</td>
+</tr>
+<tr>
+	<td style="text-align:center;"><code>A / B</code></td>
+	<td style="text-align:left;">Division. If both operands are integer types, then the result is the quotient of the division.</td>
+</tr>
+<tr>
+	<td style="text-align:center;"><code>A % B</code></td>
+	<td style="text-align:left;">Modulus; the remainder from division.</td>
+</tr>
+<tr>
+	<td style="text-align:center;"><code>A &amp; B</code></td>
+	<td style="text-align:left;">Bitwise <code>AND</code> of <code>A</code> and <code>B</code>.</td>
+</tr>
+<tr>
+	<td style="text-align:center;"><code>A | B</code></td>
+	<td style="text-align:left;">Bitwise <code>OR</code> of <code>A</code> and <code>B</code>.</td>
+</tr>
+<tr>
+	<td style="text-align:center;"><code>A ^ B</code></td>
+	<td style="text-align:left;">Bitwise <code>XOR</code> of <code>A</code> and <code>B</code>.</td>
+</tr>
+<tr>
+	<td style="text-align:center;"><code>~A</code></td>
+	<td style="text-align:left;">Bitwise <code>NOT</code> of <code>A</code>.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="logicaloperators">Logical Operators</h4>
+
+<p>All return boolean <code>TRUE</code> or <code>FALSE</code>.</p>
+
+<table>
+<colgroup>
+<col style="text-align:center;"/>
+<col style="text-align:left;"/>
+</colgroup>
+
+<thead>
+<tr>
+	<th style="text-align:center;">Operator</th>
+	<th style="text-align:left;" colspan="2">Notes</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td style="text-align:center;"><code>A AND B</code></td>
+	<td style="text-align:left;"><code>TRUE</code> if <code>A</code> is <code>TRUE</code> <strong>and</strong> <code>B</code> is <code>TRUE</code>.</td>
+</tr>
+<tr>
+	<td style="text-align:center;"><code>A &amp;&amp; B</code></td>
+	<td style="text-align:left;">Same as <code>A AND B</code>.</td>
+</tr>
+<tr>
+	<td style="text-align:center;"><code>A OR B</code></td>
+	<td style="text-align:left;"><code>TRUE</code> if <code>A</code> is <code>TRUE</code> <strong>or</strong> <code>B</code> is <code>TRUE</code>.</td>
+</tr>
+<tr>
+	<td style="text-align:center;"><code>A | B</code></td>
+	<td style="text-align:left;">Same as <code>A OR B</code>.</td>
+</tr>
+<tr>
+	<td style="text-align:center;"><code>NOT A</code></td>
+	<td style="text-align:left;"><code>TRUE</code> if <code>A</code> is <code>FALSE</code>, otherwise <code>FALSE</code>.</td>
+</tr>
+<tr>
+	<td style="text-align:center;"><code>!A</code></td>
+	<td style="text-align:left;">Same as <code>NOT A</code>.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="operatorsoncomplextypes">Operators on Complex Types</h4>
+
+<p>The literal syntax for accessing elements in complex types.</p>
+
+<table>
+<colgroup>
+<col style="text-align:center;"/>
+<col style="text-align:left;"/>
+<col style="text-align:left;"/>
+</colgroup>
+
+<thead>
+<tr>
+	<th style="text-align:center;">Operator</th>
+	<th style="text-align:left;">Types of Operands</th>
+	<th style="text-align:left;" colspan="2">Notes</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td style="text-align:center;"><code>A[n]</code></td>
+	<td style="text-align:left;"><code>A</code> is an <code>ARRAY</code> and <code>n</code> is an <code>INT</code></td>
+	<td style="text-align:left;">Returns the <code>n</code>th element in the array <code>A</code>, indexed from 0.</td>
+</tr>
+<tr>
+	<td style="text-align:center;"><code>M[key]</code></td>
+	<td style="text-align:left;"><code>M</code> is a <code>MAP&lt;K, V&gt;</code> with <code>key</code> of type <code>K</code></td>
+	<td style="text-align:left;">Returns the value corresponding to the key in the map or <code>NULL</code>.</td>
+</tr>
+<tr>
+	<td style="text-align:center;"><code>S.x</code></td>
+	<td style="text-align:left;"><code>S</code> is a <code>STRUCT</code></td>
+	<td style="text-align:left;">Returns the <code>x</code> field of <code>S</code>.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="built-infunctions">Built-in Functions</h4>
+
+<p>The list of available functions is embedded in the source file <a href="http://svn.apache.org/viewvc/hive/trunk/ql/src/java/org/apache/hadoop/hive/ql/exec/FunctionRegistry.java?view=markup">FunctionRegistry.java</a>. Many of them simply call the corresponding Java JDK functions. The following list is from Hive v0.7.1. Subsequent versions may add additional functions.</p>
+
+<table>
+<colgroup>
+<col style="text-align:left;"/>
+<col style="text-align:left;"/>
+</colgroup>
+
+<thead>
+<tr>
+	<th style="text-align:left;">Signature</th>
+	<th style="text-align:left;" colspan="2">Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td style="text-align:left;"><code>BIGINT round(DOUBLE d)</code></td>
+	<td style="text-align:left;"></td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>BIGINT floor(DOUBLE d)</code></td>
+	<td style="text-align:left;">Returns the <em>maximum</em> <code>BIGINT</code> value that is equal to or less than <code>d</code>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>BIGINT ceil(DOUBLE d)</code></td>
+	<td style="text-align:left;">Returns the <em>minimum</em> <code>BIGINT</code> value that is equal to or greater than <code>d</code>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>DOUBLE rand()</code>, <code>DOUBLE rand(int seed)</code></td>
+	<td style="text-align:left;">Returns a random number (differen from row to row). Specifying the seed makes the generated random number sequence deterministic.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>STRING concat(STRING s1, STRING s2,...)</code></td>
+	<td style="text-align:left;">Concatenates all string arguments.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>STRING substr(STRING s, int start)</code></td>
+	<td style="text-align:left;">Returns the substring of <code>s</code> starting from the <code>start</code> position till the end of the string.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>STRING substr(STRING s, int start, int length)</code></td>
+	<td style="text-align:left;">Returns the substring of <code>s</code> starting from the <code>start</code> position with the given <code>length</code>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>STRING upper(STRING s)</code></td>
+	<td style="text-align:left;">Returns the string that results from converting all characters of <code>s</code> to upper case.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>STRING ucase(STRING s)</code></td>
+	<td style="text-align:left;">Same as <code>upper</code>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>STRING lower(STRING s)</code></td>
+	<td style="text-align:left;">Returns the string that results from converting all characters of <code>s</code> to lower case.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>STRING lcase(STRING s)</code></td>
+	<td style="text-align:left;">Same as <code>lower</code>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>STRING trim(STRING s)</code></td>
+	<td style="text-align:left;">Returns the string that results from trimming whitespace from both ends of <code>s</code>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>STRING ltrim(STRING s)</code></td>
+	<td style="text-align:left;">Returns the string that results from trimming whitespace from the beginning (left hand side) of <code>s</code>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>STRING rtrim(STRING s)</code></td>
+	<td style="text-align:left;">Returns the string that results from trimming whitespace from the end (right hand side) of <code>s</code>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>STRING regexp_replace(STRING s, STRING regex, STRING replacement)</code></td>
+	<td style="text-align:left;">Returns the string that results from replacing all substrings in <code>s</code> that match the Java regular expression <code>regex</code> with the <code>replacement</code> string, which can be left blank, implying &quot;&quot;. For example, <code>regexp_replace('foobar', 'oo|ar', )</code> returns <code>&quot;fb&quot;</code>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>int size(Map&lt;K.V&gt;)</code></td>
+	<td style="text-align:left;">Returns the number of elements in the <code>MAP</code>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>int size(Array&lt;T&gt;)</code></td>
+	<td style="text-align:left;">Returns the number of elements in the <code>ARRAY</code>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>value of &lt;type&gt;  cast(&lt;expr&gt; as &lt;type&gt;)</code></td>
+	<td style="text-align:left;">Converts the results of the expression <code>expr</code> to <code>type</code>, e.g. <code>cast('1' as BIGINT)</code> will convert the <code>BIGINT</code> value of 1. A <code>NULL</code> is returned if the conversion fails.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>STRING from_unixtime(int unixtime)</code></td>
+	<td style="text-align:left;">Converts the number of seconds from the Unix epoch (1970&#8211;01&#8211;01 00:00:00 UTC) to a string representing the timestamp of that moment in the current system time zone in the format of <code>&quot;1970-01-01 00:00:00&quot;</code>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>STRING to_date(STRING timestamp)</code></td>
+	<td style="text-align:left;">Returns the date part of a timestamp string, e.g., <code>to_date(&quot;1970-01-01 00:00:00&quot;) = &quot;1970-01-01&quot;</code>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>INT year(STRING date)</code></td>
+	<td style="text-align:left;">Returns the year part of a date or a timestamp string, e.g., <code>year(&quot;1970-01-01 00:00:00&quot;) = 1970</code>, <code>year(&quot;1970-01-01&quot;) = 1970</code>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>INT month(STRING date)</code></td>
+	<td style="text-align:left;">Returns the month part of a date or a timestamp string, e.g., <code>month(&quot;1970-11-01 00:00:00&quot;) = 11</code>, <code>month(&quot;1970-11-01&quot;) = 11</code>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>INT day(STRING date)</code></td>
+	<td style="text-align:left;">Return the day part of a date or a timestamp string, e.g., <code>day(&quot;1970-11-01 00:00:00&quot;) = 1</code>, <code>day(&quot;1970-11-01&quot;) = 1</code>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>STRING get_json_object(STRING json_string, STRING path)</code></td>
+	<td style="text-align:left;">Extracts a JSON object from a JSON string <code>json_string</code> based on the JSON <code>path</code> specified, then returns the corresponding string representation of the extracted JSON object. Returns null if the input JSON string is invalid.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="aggregatefunctions">Aggregate Functions</h4>
+
+<p>&#8220;Aggregate&#8221; functions take a collection of things and return a computation over them.</p>
+
+<table>
+<colgroup>
+<col style="text-align:left;"/>
+<col style="text-align:left;"/>
+</colgroup>
+
+<thead>
+<tr>
+	<th style="text-align:left;">Signature</th>
+	<th style="text-align:left;" colspan="2">Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td style="text-align:left;"><code>BIGINT count(*)</code></td>
+	<td style="text-align:left;">Returns the total number of retrieved rows, including rows containing <code>NULL</code> values.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>BIGINT count(expr)</code></td>
+	<td style="text-align:left;">Returns the number of rows for which the supplied expression is non-<code>NULL</code>,</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>BIGINT count(DISTINCT expr[, expr_.])</code></td>
+	<td style="text-align:left;">Returns the number of rows for which the supplied expressions are unique and non-<code>NULL</code>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>DOUBLE sum(col)</code></td>
+	<td style="text-align:left;">Returns the sum of the values in the column, including duplicates.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>DOUBLE sum(DISTINCT col)</code></td>
+	<td style="text-align:left;">Returns the sum of the distinct values in the column.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>DOUBLE avg(col)</code></td>
+	<td style="text-align:left;">Returns the average of the values in the column, including duplicates.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>DOUBLE avg(DISTINCT col)</code></td>
+	<td style="text-align:left;">Returns the average of the distinct values in the column.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>DOUBLE min(col)</code></td>
+	<td style="text-align:left;">Returns the minimum value in the column.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>DOUBLE max(col)</code></td>
+	<td style="text-align:left;">Returns the maximum value in the column.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="exampleselectstatements">Example Select Statements</h3>
+
+<p>Using the <code>stocks</code> table we created previously, first notice that the first of these two queries does <em>not</em> invoke MapReduce, so it returns much faster than the second query.</p>
+
+<pre><code>hive&gt; SELECT * FROM stocks s WHERE s.exchange = 'NASDAQ' s.symbol = 'AAPL' LIMIT 20;
+hive&gt; SELECT s.ymd, s.price_open FROM stocks s WHERE s.exchange = 'NASDAQ' AND s.symbol = 'AAPL' LIMIT 20;
+</code></pre>
+
+<p>Another key point about both queries is that they filter on both partitions defined for this table, the <code>exchange</code> and the <code>symbol</code>. That means that Hive skips all the directories that don&#8217;t match the <code>NASDAQ</code> and <code>AAPL</code> partitions, speeding up the queries, even though the query includes a filtering <code>WHERE</code> clause. In fact, <em>no</em> filtering is actually done since all data in the selected partition combination matches <code>NASDAQ</code> and <code>AAPL</code>. From a logical standpoint, you could drop the <code>s.exchange = 'NASDAQ'</code> clause, which is a superset filter compared to the <code>s.symbol = 'AAPL'</code> clause, but leaving it in prevents Hive from searching all the NYSE partitions!</p>
+
+<pre><code>hive&gt; EXPLAIN SELECT * FROM stocks s WHERE s.exchange = 'NASDAQ' AND s.symbol = 'AAPL' LIMIT 20;
+</code></pre>
+
+<p>Compute the average closing price for <code>AAPL</code> over the whole dataset ($51.75)</p>
+
+<pre><code>hive&gt; SELECT avg(s.price_close) FROM stocks s WHERE s.symbol = 'AAPL' AND s.exchange = 'NASDAQ';
+</code></pre>
+
+<p>It&#8217;s perhaps more interesting to compute the average over blocks of time, such as yearly, which uses the <code>GROUP BY</code> clause.</p>
+
+<pre><code>hive&gt; SELECT year(s.ymd), avg(s.price_close) FROM stocks s WHERE s.symbol = 'AAPL' AND s.exchange = 'NASDAQ' GROUP BY year(s.ymd);
+</code></pre>
+
+<p>If you only care about the years where the average was within a certain range of values, then add a <code>HAVING</code> clause.</p>
+
+<pre><code>hive&gt; SELECT year(s.ymd), avg(s.price_close) FROM stocks s WHERE s.symbol = 'AAPL' AND s.exchange = 'NASDAQ' GROUP BY year(s.ymd) 
+      HAVING avg(s.price_close) &gt; 50.0 AND avg(s.price_close) &lt; 100.0;
+</code></pre>
+
+<p>You can also select elements in complex data types. Recall our <code>employees</code> table.</p>
+
+<pre><code>hive&gt; CREATE EXTERNAL TABLE employees (
+  name         STRING,
+  salary       FLOAT,
+  subordinates ARRAY&lt;STRING&gt;,
+  deductions   MAP&lt;STRING, FLOAT&gt;,
+  address      STRUCT&lt;street:STRING, city:STRING, state:STRING, zip:INT&gt;
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY '\001' 
+COLLECTION ITEMS TERMINATED BY '\002' 
+MAP KEYS TERMINATED BY '\003'
+LINES TERMINATED BY '\n'
+STORED AS TEXTFILE
+LOCATION '/user/thinkbig/employees';
+</code></pre>
+
+<p>Here are some sample queries that probe elements of the <code>ARRAY</code>, <code>MAP</code>, and <code>STRUCT</code> columns.</p>
+
+<pre><code>hive&gt; SELECT e.name, e.subordinates[0] FROM employees e;
+hive&gt; SELECT e.name, e.subordinates FROM employees e WHERE size(e.subordinates) &gt; 0;
+
+hive&gt; SELECT e.name, e.deductions['Federal Taxes'] FROM employees e;
+hive&gt; SELECT e.name, e.deductions FROM employees e WHERE size(e.deductions) != 3;
+
+hive&gt; SELECT e.name, e.address from employees e where e.address.city != 'Chicago';
+</code></pre>
+
+<p>Hive supports the SQL <code>LIKE</code> statement. It also supports matching on Java-style regular expressions:</p>
+
+<pre><code>hive&gt; SELECT e.name, e.address from employees e where e.address.city LIKE 'C%';
+hive&gt; SELECT e.name, e.address from employees e where e.address.zip RLIKE '60[56][0-9]{2}';
+</code></pre>
+
+<p>Be careful about known bugs in comparisons of <code>FLOAT</code> and <code>DOUBLE</code> values:</p>
+
+<pre><code>hive&gt; SELECT name, deductions['Federal Taxes'] FROM employees WHERE deductions['Federal Taxes'] &gt; 0.2; 
+</code></pre>
+
+<h3 id="examplejoins">Example Joins</h3>
+
+<p>You can do equi-joins on multiple tables. Note that hive only support <em>equality</em> join conditions, due to difficulties in translating other conditions into MapReduce jobs.</p>
+
+<p>For the purposes of doing joins, consider this <code>dividends</code> table for quarterly dividend payments.</p>
+
+<pre><code>CREATE TABLE dividends (
+  exchange        STRING,
+  symbol          STRING,
+  ymd             STRING,
+  dividend        FLOAT
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ',' 
+STORED AS TEXTFILE;
+</code></pre>
+
+<p>Here is an example <code>EQUI-JOIN</code> on the closing prices for <code>AAPL</code> and the dividend values on the days that dividends were paid.</p>
+
+<pre><code>hive&gt; SELECT s.ymd, s.symbol, s.price_close, d.dividend
+FROM stocks s 
+JOIN dividends d ON (s.ymd = d.ymd AND s.symbol = d.symbol)
+WHERE s.symbol = 'AAPL';    
+OK
+1987-05-11  AAPL    77.0    0.015
+1987-08-10  AAPL    48.25   0.015
+...
+</code></pre>
+
+<p>Here a similar <code>LEFT OUTER JOIN</code> (limited to a time range around a known dividend payment):</p>
+
+<pre><code>hive&gt; SELECT s.ymd, s.symbol, s.price_close, d.dividend
+  FROM stocks s 
+  LEFT OUTER JOIN dividends d ON (s.ymd = d.ymd AND s.symbol = d.symbol)
+  WHERE s.symbol = 'AAPL'     AND
+        s.ymd &gt;= '1995-11-15' AND
+        s.ymd &lt;= '1995-11-25';
+OK
+1995-11-15  AAPL    41.0    NULL
+1995-11-16  AAPL    39.94   NULL
+1995-11-17  AAPL    40.13   NULL
+1995-11-20  AAPL    38.63   NULL
+...
+</code></pre>
+
+<p>Notice that this <code>RIGHT OUTER JOIN</code> is structured to give the same output.</p>
+
+<pre><code>hive&gt; SELECT s.ymd, s.symbol, s.price_close, d.dividend
+  FROM dividends d
+  RIGHT OUTER JOIN stocks s ON (s.ymd = d.ymd AND s.symbol = d.symbol)
+  WHERE s.symbol = 'AAPL'     AND
+        s.ymd &gt;= '1995-11-15' AND
+        s.ymd &lt;= '1995-11-25';
+OK
+1995-11-15  AAPL    41.0    NULL
+1995-11-16  AAPL    39.94   NULL
+1995-11-17  AAPL    40.13   NULL
+1995-11-20  AAPL    38.63   NULL
+...
+</code></pre>
+
+<p>To do a <code>FULL OUTER JOIN</code>, simply replace <code>RIGHT</code> in the previous query with <code>FULL</code>. </p>
+
+<p>A <code>LEFT SEMI-JOIN</code> is a workaround for the missing SQL &#8220;IN &#8230; EXISTS&#8221; clause. A Hive limitation is that you can&#8217;t reference the table used in the semi-join clause in the <code>SELECT</code> or <code>WHERE</code> clauses. The following query selects all closing prices for days when a dividend was payed.</p>
+
+<pre><code>hive&gt; SELECT s.ymd, s.symbol, s.price_close
+  FROM stocks s
+  LEFT SEMI JOIN dividends d 
+  ON (s.ymd = d.ymd AND s.symbol = d.symbol)
+  WHERE s.symbol = 'AAPL' AND s.exchange = 'NASDAQ';
+</code></pre>
+
+<p>A Map-side <code>LEFT JOIN</code> is an optimization that eliminates a reduce step, if one of several conditions are true. Either all but one table must be small enough to fit into an in-memory Hash or the data is already sorted and <em>bucketized</em>.</p>
+
+<pre><code>hive&gt; SELECT /*+ MAPJOIN(d) */ s.ymd, s.symbol, s.price_close, d.dividend
+  FROM stocks s
+  JOIN dividends d ON (s.ymd = d.ymd AND s.symbol = d.symbol)
+  WHERE s.symbol = 'AAPL';
+</code></pre>
+
+<p>Note that Hive v0.8.0 automatically performs this optimization, if you set the <code>hive.auto.convert.join</code> to <code>true</code>.</p>
+
+<h3 id="orderingofoutputdata">Ordering of Output Data</h3>
+
+<p>The output can be sorted. Hive supports the SQL <code>ORDER BY</code> clause, which does a <em>total ordering</em>. However, this has the major drawback of forcing all map output to go a single reducer, which might run for an unacceptably long time. Hence, when <code>hive.mapred.mode</code> is set to <code>strict</code>, Hive only allows the <code>ORDER BY</code> clause to be used if a <code>LIMIT</code> clause is also used. This restriction can be overridden by setting <code>hive.mapred.mode</code> to <code>nonstrict</code>.</p>
+
+<pre><code>hive&gt; SELECT s.ymd, s.symbol, s.price_close
+  FROM stocks s 
+  ORDER BY s.ymd ASC, s.symbol DESC
+  LIMIT 50;
+</code></pre>
+
+<p>Note that you can specify <code>ASC</code> (ascending) order, the default, or <code>DESC</code> (descending) order. </p>
+
+<p>To avoid funneling large data sets through a single reducer, Hive also provides a <code>SORT BY</code> clause that orders the output <em>locally</em> in <em>each</em> reducer, not <em>globally</em>. However, a clever partitioning of keys can result in reducer output files that provide a global ordering of the data if the files are concatenated appropriately.</p>
+
+<pre><code>hive&gt; SELECT s.ymd, s.symbol, s.price_close
+  FROM stocks s 
+  SORT BY s.ymd ASC, s.symbol DESC;
+</code></pre>
+
+<p>There are two other ordering options; <code>DISTRIBUTE BY</code> specifies columns for which output records with identical values are sent to the same <code>reducers. However, the column values won't be sorted that arrive at a particular reducer (like map output keys would be sorted). So, an additional</code>SORT BY<code>clause is required if you want the column values sorted.</code>CLUSTER BY<code>is a short hand for</code>DISTRIBUTE BY<code>and</code>SORT BY` for the columns specified.</p>
+
+<pre><code>hive&gt; SELECT s.ymd, s.symbol, s.price_close
+  FROM stocks s 
+  DISTRIBUTE BY s.symbol
+  SORT BY s.symbol ASC, s.ymd DESC;
+
+hive&gt; SELECT s.ymd, s.symbol, s.price_close
+  FROM stocks s 
+  CLUSTER BY s.symbol;
+</code></pre>
+
+<h3 id="theselecttransformormap-reducesyntax">The Select Transform or Map-Reduce Syntax</h3>
+
+<p>The <code>SELECT TRANSFORM</code> or <code>MAP</code> and <code>REDUCE</code> clauses let you call out to external programs to do map and or reduce tasks. This is a useful way to integrate 3rd-party tools into Hive queries. It&#8217;s also a useful way to implement a calculation that&#8217;s difficult to do in SQL, but much easier in a <em>Turing-complete</em> language. Essentially, we are exploiting Hadoop&#8217;s <em>Streaming</em> API.</p>
+
+<p>As an example, we compute the <em>Word Count</em> of Shakespeare&#8217;s plays using the following Python <em>map</em> and <em>reduce</em> scripts, called <code>mapper.py</code> and <code>reducer.py</code>, respectively. We will assume these scripts are in <code>/usr/local/bin</code>. Here is <code>/usr/local/bin/mapper.py</code>.</p>
+
+<pre><code>#!/usr/bin/env python
+# The mapper for the WordCount algorithm using Streaming.
+
+import sys
+
+for line in sys.stdin:
+    words = line.strip().split()
+    for word in words:
+        print &quot;%s\t%d&quot; % (word.lower(), 1)
+</code></pre>
+
+<p>Here is <code>/usr/local/bin/reducer.py</code>.</p>
+
+<pre><code>#!/usr/bin/env python
+# The reducer for the WordCount algorithm using Streaming.
+
+import sys
+
+# In the Java API the reducer receives:
+#  key1 [value11 value12 ...]
+#  key2 [value21 value22 ...]
+#  ...
+# In the streaming API, the reducer receives:
+#  key1 value11
+#  key1 value12
+#  ...
+#  key2 value21
+#  key2 value22
+#  ...
+
+(last_seen_key, count_for_key) = (None, 0)
+
+for line in sys.stdin:
+    (key, value) = line.strip().split(&quot;\t&quot;)
+    if last_seen_key and last_seen_key != key:
+        print &quot;%s\t%d&quot; % (last_seen_key, count_for_key)
+        (last_seen_key, count_for_key) = (key, int(value))
+    else:
+        (last_seen_key, count_for_key) = (key, count_for_key + int(value))
+
+if last_seen_key:
+    print &quot;%s\t%d&quot; % (last_seen_key, count_for_key)
+</code></pre>
+
+<p>Now, let&#8217;s suppose we have one or more text files of Shakespeare&#8217;s plays in HDFS in the directory <code>/data/shakespeare/input</code>. We first create an <code>EXTERNAL</code> table that points to this file. It treats each line as a record and each record as having a single field, the line&#8217;s text.</p>
+
+<pre><code>hive&gt; CREATE EXTERNAL TABLE shakespeare_line (line STRING)
+  LOCATION '/data/shakespeare/input';
+</code></pre>
+
+<p>Next, crate the output table for the Word Count results.</p>
+
+<pre><code>hive&gt; CREATE TABLE shakespeare_line_wc (word STRING, count INT)
+  ROW FORMAT 
+    DELIMITED FIELDS TERMINATED BY '\t'
+    STORED AS TEXTFILE;
+</code></pre>
+
+<p>Finally, here is the query that puts them all together. </p>
+
+<pre><code>FROM (
+  FROM shakespeare_line
+    MAP line
+    USING '/usr/local/bin/mapper.py'
+    AS word, count
+    CLUSTER BY word) wc
+  INSERT OVERWRITE TABLE shakespeare_line_wc
+    REDUCE wc.word, wc.count
+    USING '/usr/local/bin/reducer.py'
+    AS word, count;
+</code></pre>
+
+<p>Note that <code>CLUSTER BY</code> is also used. The <code>MAP</code> and <code>REDUCE</code> keywords are a bit misleading, because they may not actually map to underlying map and reduce steps, respectively. The alternative <code>SELECT TRANSFORM</code> syntax makes the technique more abstract and uniform.</p>
+
+<pre><code>FROM (
+  FROM shakespeare_line
+    SELECT TRANSFORM (line)
+    USING '/usr/local/bin/mapper.py'
+    AS word, count
+    CLUSTER BY word) wc
+  INSERT OVERWRITE TABLE shakespeare_line_wc
+    SELECT TRANSFORM (wc.word, wc.count)
+    USING '/usr/local/bin/reducer.py'
+    AS word, count;
+</code></pre>
+
+<h3 id="userdefinedfunctionsudfsuserdefinedaggregatefunctionsudafsuserdefinedtable-generatingfunctionsudtfs">User Defined Functions (UDFs), User Defined Aggregate Functions (UDAFs), User Defined Table-Generating Functions (UDTFs)</h3>
+
+<p><em>User Defined Functions</em> (UDFs) take a row (which could be a single value) and return a new row (or value). UDFs are one-to-one mappings. </p>
+
+<p>The following <code>dividends</code> query uses the <code>year()</code> and <code>month()</code> UDFs to extract the year and month from a trading day date stamp, respectively, and the <code>lower()</code> UDF to convert the symbol to lower case.</p>
+
+<pre><code>hive&gt; SELECT ymd, year(ymd), month(ymd), lower(symbol) FROM dividends LIMIT 20;
+OK
+2006-01-25  2006    1   amtd
+2009-11-09  2009    11  ahgp
+2009-08-10  2009    8   ahgp
+...
+</code></pre>
+
+<p><em>User Defined Aggregate Functions</em> (UDAFs) take multiple rows and return an <em>aggregate</em> of them as a new row. UDAFs are many-to-one mappings.</p>
+
+<p>The following <code>dividends</code> query uses the <code>avg()</code> and <code>count()</code> UDAFs to average and sum the dividends payed by Apple, respectively.</p>
+
+<pre><code>hive&gt; SELECT avg(dividend), count(dividend) FROM dividends WHERE symbol = 'AAPL';
+OK
+0.027142856695822306    35
+</code></pre>
+
+<p><em>User Defined Table-Generating Functions</em> (UDTFs) are the least well known. They take a single row and return multiple new rows, effectively generating a new table. UDTFs are one-to-many mappings.</p>
+
+<p>The following <code>employees</code> query uses the <code>explode()</code> UDTF to expand the <code>subordinates</code> <code>ARRAY</code> in the <code>employees</code> table rows. Note that <code>explode()</code> requires the data to be in an <code>ARRAY</code>. Also, an <code>AS new_col</code> is required, even if it is not subsequently used.</p>
+
+<pre><code>hive&gt; SELECT explode(subordinates) AS subs FROM employees;
+OK
+Mary Smith
+Todd Jones
+Bill King
+John Doe
+Fred Finance
+Stacy Accountant
+</code></pre>
+
+<p>If you have a custom UDF implemented in Java, you can use the <code>ADD JAR</code> command to make it visible across the Hadoop cluster, so every task process that Hive generates will be able to use it. This is the main difference between this command and adding a jar file to <code>HADOOP_CLASSPATH</code>. The latter does not propogate the jar file to all nodes. </p>
+
+<p>Once the jar is added, then you create a &#8220;temporary&#8221; function that calls to your UDF. The following example, assumes you have implemented a custom <code>ROT13</code> cipher in a class <code>com.example.cipher.Rot13</code> and built a jar file <code>rot13-007.jar</code> that contains it. If the jar file is not in the current directory, then add the appropriate path to it in the <code>ADD JAR</code> command.</p>
+
+<pre><code>ADD JAR rot13-007.jar;
+
+CREATE TEMPORARY FUNCTION rot13 AS 'com.example.cipher.Rot13';
+
+SELECT name, spy_agency, rot13(message) FROM cloaks_n_daggers;
+</code></pre>
+
+<p>A <em>SerDe</em> (Serializer/Deserializer) is used to parse a record in a byte stream that uses a custom format. An <code>INPUTFORMAT</code> and <code>OUTPUTFORMAT</code> class defines how such records are stored in files. Specifically, the <code>INPUTFORMAT</code> defines how the files backing the tables are formatted, while the <code>OUTPUTFORMAT</code> defines the format that Hive will use when returning query results. The former must be a subclass of <code>org.apache.hadoop.mapreduce.lib.input.InputFormat</code>, while the latter is restricted to subclassing <code>org.apache.hadoop.hive.ql.io.HiveOutputFormat</code>.</p>
+
+<p>The following table exposes several fields in Twitter messages encoded in JSON.</p>
+
+<pre><code>CREATE EXTERNAL TABLE twitter2 (
+    tweet_id         BIGINT,
+    created_at       STRING,
+    text             STRING,
+    user_id          BIGINT,
+    user_screen_name STRING,
+    user_lang        STRING
+  )
+  ROW FORMAT SERDE &quot;org.apache.hadoop.hive.contrib.serde2.JsonSerde&quot;
+    WITH SERDEPROPERTIES (
+      &quot;tweet_id&quot;=&quot;$.id&quot;,
+      &quot;created_at&quot;=&quot;$.created_at&quot;,
+      &quot;text&quot;=&quot;$.text&quot;,
+      &quot;user_id&quot;=&quot;$.user.id&quot;,
+      &quot;user_screen_name&quot;=&quot;$.user.screen_name&quot;,
+      &quot;user_lang&quot;=&quot;$.user.lang&quot;
+    )
+  STORED AS 
+    INPUTFORMAT  'org.apache.hadoop.mapreduce.lib.input.TextInputFormat'
+    OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.HiveBinaryOutputFormat'
+  LOCATION '/data/twitter/input';
+</code></pre>
+
+<p>Note that a <em>SerDe</em> is used that was contributed to the Hive project. Actually, it&#8217;s an enhanced version of this <em>SerDe</em> found <a href="https://github.com/ThinkBigAnalytics/hive-json-serde">here</a>. The enhancements include the <code>SERDEPROPERTIES</code> that allow the user to define the mapping between internal JSON fields and the table columns, among other things.</p>
+
+<p>Using a <em>SerDe</em> doesn&#8217;t require the <code>STORED AS INPUTFORMAT ... OUTPUTFORMAT ...</code> clause. Each can be used without the other, as needed.</p>
+
+<h2 id="differencesbetweenhiveqloraclesqlandansisql">Differences Between HiveQL, Oracle SQL, and ANSI SQL</h2>
+
+<p><em>HiveQL</em> is another SQL dialect, but it is farther away from the ANSI standard SQL than most other SQL implementations. This section discusses some differences that will be apparent to something already very familiar with SQL, especially Oracle&#8217;s dialect. Some differences are relatively minor and may be resolved over time. Others reflect more fundamental differences, like the limitations of HDFS.</p>
+
+<p>Here we discuss a few of the differences.</p>
+
+<h3 id="notransactionsorupdates">No Transactions or Updates</h3>
+
+<p>These are planned and may appear soon, especially through the new HBase integration. Also, appending to HDFS files will finally be available in the Next Generation Hadoop (v.23).</p>
+
+<h3 id="notinquery">NOT IN Query</h3>
+
+<p>In Oracle, you would write something like this:</p>
+
+<pre><code>SELECT * FROM employees 
+  WHERE NOT IN 
+    (SELECT dept_number FROM departments);
+</code></pre>
+
+<p>Here&#8217;s how you would have to write it in HiveQL:</p>
+
+<pre><code>SELECT * FROM employees
+  LEFT OUTER JOIN departments
+  ON (employees.dept_number = departments.dept_number) 
+  WHERE departments.dept_number IS NULL;
+</code></pre>
+
+<h3 id="joinsyntax">JOIN Syntax</h3>
+
+<p>You may have already noticed that the equi-join syntax is different.</p>
+
+<p>In Oracle.</p>
+
+<pre><code>SELECT * FROM employees, departments 
+  WHERE employees.dept_number = departments.dept_number;
+</code></pre>
+
+<p>Here&#8217;s how you would have to write it in HiveQL:</p>
+
+<pre><code>SELECT * FROM employees
+  JOIN departments
+  ON (employees.dept_number = departments.dept_number);
+</code></pre>
+
+<h3 id="moreflexiblefilestorageetc.">More Flexible File Storage, etc.</h3>
+
+<p>On the other hand, Hive has a lot more flexbility about how you store the data, including the file and record formats, locations, etc. You can also redirect query output directory to a local or HDFS directory, as in this example.</p>
+
+<pre><code>INSERT OVERWRITE LOCAL DIRECTORY '/home/me/bosses'
+  SELECT * FROM employees WHERE length(employees.subordinates) &gt; 0;
+</code></pre>
+    </div>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<project name="Hive-CustomUDFs" default="main">
+
+  <property environment="env"/>
+
+	<property name="src.dir"        value="src/main/java" />
+	<property name="test.dir"       value="src/test/java" />
+	<property name="lib.dir"        value="../lib" />
+
+	<property name="build.dir"      value="bin" />
+	<property name="classes.dir"    value="${build.dir}/classes" />
+	<!-- All other Java exercises use ${build.dir}/jar as jar.dir.
+	     Here, we use the current directory, for easier access from Hive, etc.
+	-->
+	<property name="jar.dir"        value="." />
+	<property name="jar.file"       value="${jar.dir}/moving-avg-udf.jar" />
+
+	<property name="main.class" value="com.thinkbiganalytics.ex.wordcount.SimpleWordCount" />
+
+	<path id="classpath">
+		<fileset dir="${lib.dir}" includes="**/*.jar" />
+	</path>
+
+	<path id="hadoop.classpath">
+		<fileset dir="${env.HADOOP_HOME}/lib" includes="**/*.jar" />
+	</path>
+
+	<target name="main" depends="clean,test"/>
+
+	<target name="clean" depends="junit.clean">
+		<delete dir="output" />
+		<delete dir="${build.dir}" />
+	</target>
+
+	<target name="build-dirs">
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${classes.dir}" />
+	</target>
+
+	<target name="compile" depends="build-dirs">
+		<mkdir dir="${classes.dir}" />
+		<javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="classpath" includeantruntime="false" debug="on"/>
+		<javac srcdir="${test.dir}" destdir="${classes.dir}" classpathref="classpath" includeantruntime="false" debug="on"/>
+		<copy todir="${classes.dir}">
+			<fileset dir="${src.dir}" excludes="**/*.java" />
+			<fileset dir="${test.dir}" excludes="**/*.java" />
+		</copy>
+	</target>
+
+	<target name="test" depends="junit" />
+
+	<target name="junit" depends="jar">
+		<junit dir="${basedir}" printsummary="yes" showoutput="yes" haltonfailure="on">
+			<!-- <jvmarg value="-Xdebug"/>
+					 <jvmarg value="-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8000"/> -->
+			<jvmarg value="-Xmx800m"/>
+			<classpath>
+				<path refid="classpath" />
+				<pathelement location="${classes.dir}" />
+			</classpath>
+			<batchtest fork="yes">
+			  <fileset dir="${test.dir}" includes="**/*Test.java" />
+			</batchtest>
+			<formatter type="plain" />
+		</junit>
+		<antcall target="junit.clean" />
+	</target>
+	
+	<target name="junit.clean">
+		<delete quiet="true">
+			<fileset dir="." includes="TEST-*.txt" />
+		</delete>
+	</target>
+
+	<target name="jar" depends="compile">
+<!-- 		<mkdir dir="${jar.dir}" /> -->	
+		<jar destfile="${jar.file}" basedir="${classes.dir}">
+			<manifest>
+				<attribute name="Main-Class" value="${main.class}" />
+			</manifest>
+		</jar>
+	</target>
+
+</project>

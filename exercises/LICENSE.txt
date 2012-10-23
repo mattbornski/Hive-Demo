@@ -1,0 +1,174 @@
+LICENSES AND COPYRIGHTS
+
+The lecture slides and handouts provided with this course are Copyright (c) 2011-2012 Think Big Analytics.
+
+The source code for the exercises is covered by the Apache License, Version 2.0, http://www.apache.org/licenses/LICENSE-2.0.html
+
+All code examples in the lecture slides, handouts and exercises are provided as is, without warranty of any kind.
+
+
+In addition, numerous third-party components are included with this course. The following licenses apply to the third-party components used by the course and installed in provided virtual machines (if any).
+
+---========================================================---
+
+Hadoop
+
+Copyright (c) 2011 The Apache Software Foundation.
+
+Source code: http://hadoop.apache.org/
+
+License: Apache License, Version 2.0
+http://www.apache.org/licenses/LICENSE-2.0.html
+
+---========================================================---
+
+Apache Hive
+
+Copyright (c) 2008-2011 The Apache Software Foundation.
+Copyright (c) 2003-2008, Terrence Parr.
+Copyright (c) 2008, Terrence Parr.
+Copyright (c) 2000-2005 INRIA, France Telecom.
+Copyright (c) 2002 JSON.org
+Copyright (c) 2002-2006, Marc Prud'hommeaux <mwp1@cornell.edu>.
+Copyright (c) 2004-2008 QOS.ch
+
+Source code: http://hive.apache.org
+
+License: Apache License, Version 2.0
+http://www.apache.org/licenses/LICENSE-2.0.html
+
+---========================================================---
+
+Apache Pig
+
+Copyright (c) 2008 The Apache Software Foundation.
+Copyright (c) 2003 Sun Microsystems, Inc.
+Copyright (c) Mort Bay Consulting Pty. Ltd. (Australia) 
+Copyright (c) 2002,2003,2004,2005,2006,2007,2008 Atsuhiko Yamanaka, JCraft,Inc. All rights reserved.
+
+Source code: http://pig.apache.org/
+
+License: Apache License, Version 2.0
+http://www.apache.org/licenses/LICENSE-2.0.html
+
+---========================================================---
+
+Apache Mahout
+
+Copyright (c) 2009 The Apache Software Foundation.
+Copyright (c) 2002 Extreme! Lab, Indiana University.
+Copyright (c) 2006-2009 Daniel W. Dyer.
+Copyright (c) 2008 Quantcast Corp.
+Copyright (c) 2007 Kosmix Corp.
+Copyright (c) 2008 James Murty.
+Copyright (c) 2008, cglib.
+Copyright (c) 2000-2006, www.hamcrest.org
+Copyright (c) 2003-2006, Joe Walnes
+Copyright (c) 2006-2007, XStream Committers
+Copyright (c) 2001-2007 Tammo Freese (http://www.easymock.org/)
+Copyright (c) 2005, Regents of the University of California
+Copyright (c) 1999 CERN - European Organization for Nuclear Research.
+
+Source code: http://mahout.apache.org/
+
+License: Apache License, Version 2.0
+http://www.apache.org/licenses/LICENSE-2.0.html
+
+---========================================================---
+
+Apache HBase
+
+Copyright (c) 2009 The Apache Software Foundation.
+
+Source code: http://hbase.apache.org/
+
+License: Apache License, Version 2.0
+http://www.apache.org/licenses/LICENSE-2.0.html
+
+---========================================================---
+
+Apache Thrift
+
+Copyright (c) 2006-2010 The Apache Software Foundation.
+
+Source code: http://incubator.apache.org/thrift/
+
+License: Apache License, Version 2.0
+http://www.apache.org/licenses/LICENSE-2.0.html
+
+---========================================================---
+
+Apache ZooKeeper
+
+Copyright (c) 2009 The Apache Software Foundation.
+
+Source code: http://zookeeper.apache.org
+
+License: Apache License, Version 2.0
+http://www.apache.org/licenses/LICENSE-2.0.html
+
+---========================================================---
+
+Apache Commons
+
+Copyright (c) 2003-2007 The Apache Software Foundation.
+
+Source code and additional copyright: http://commons.apache.org/
+
+License: Apache License, Version 2.0
+http://www.apache.org/licenses/LICENSE-2.0.html
+
+---========================================================---
+
+Apache Tomcat
+
+Copyright (c) 1999-2011 The Apache Software Foundation.
+
+Source code: http://tomcat.apache.org
+
+License: Apache License, Version 2.0
+http://www.apache.org/licenses/LICENSE-2.0.html
+
+---========================================================---
+
+Jetty Web Container 
+
+Copyright (c) 1995-2009 Mort Bay Consulting Pty Ltd.
+
+License: Apache License, Version 2.0
+http://www.apache.org/licenses/LICENSE-2.0.html
+
+---========================================================---
+
+JSON
+
+Copyright (c) 2002 JSON.org.
+
+License: The JSON License
+http://www.json.org/license.html
+
+---========================================================---
+
+JUnit
+
+License: Common Public License - v 1.0
+http://www.junit.org/license
+
+---========================================================---
+
+log4j
+
+License: Apache License, Version 2.0
+http://www.apache.org/licenses/LICENSE-2.0.html
+
+---========================================================---
+
+Protocol Buffers
+
+Copyright (c) 2008 Google Inc.
+
+Source code: http://protobuf.googlecode.com
+
+License: New BSD License
+http://www.opensource.org/licenses/bsd-license.php
+
